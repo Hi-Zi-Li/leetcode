@@ -68,7 +68,7 @@ public:
         if (it != cache.end()) {
             int value = it->second->second;
             {
-                // BUG CODE SEGMENT
+                // DEQUE BUG CODE SEGMENT
                 dq.erase(it->second);
                 dq.emplace_back(make_pair(key, value));
             }
@@ -82,7 +82,7 @@ public:
         auto it = cache.find(key);
         if (it != cache.end()) {
             {
-                // BUG CODE SEGMENT
+                // DEQUE BUG CODE SEGMENT
                 dq.erase(it->second);
                 dq.emplace_back(make_pair(key, value));
             }

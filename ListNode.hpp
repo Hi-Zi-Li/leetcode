@@ -1,5 +1,5 @@
-#ifndef LISTNODE_H
-#define LISTNODE_H
+#ifndef LISTNODE_HPP
+#define LISTNODE_HPP
 #include <iostream>
 
 struct ListNode {
