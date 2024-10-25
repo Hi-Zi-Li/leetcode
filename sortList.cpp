@@ -39,7 +39,43 @@ ListNode* sortList(ListNode* head) {
         return nullptr;
     return quickSort(head).first;
 }
- 
+
+ListNode* mergeSort(ListNode* head, ListNode* tail) {
+    if (head == nullptr || head->next == nullptr)
+        return head;
+    ListNode* slow = head, *fast = head;
+    while (fast != tail) {
+        slow = slow->next;
+        fast = fast->next;
+        if (fast != tail)
+            fast = fast->next;
+    }
+    ListNode* mid = slow;
+    return mergeList(mergeSort(head, mid), mergeSort(mid, tail));
+}
+
+ListNode* mergeList(ListNode* list1, ListNode* list2) {
+    ListNode* deadNode = new ListNode();
+    ListNode* tmp1 = list1, *tmp2 = list2;
+    ListNode* tmp = deadNode;
+    while (tmp1 != nullptr && tmp2 != nullptr) {
+        if (tmp1->val < tmp2->val) {
+            tmp->next = tmp1;
+            tmp1 = tmp1->next;
+        } else {
+            tmp->next = tmp2;
+            tmp2 = tmp2->next;
+        }
+        tmp = tmp->next;
+    }
+    if (tmp1 == nullptr)
+        tmp->next = tmp2;
+    else
+        tmp->next = tmp1;
+    return deadNode->next;
+}
+
+
 int main() {
     vector<int> nums = {-1,5,3,4,0};
     ListNode* head = new ListNode(nums[0]);
